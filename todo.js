@@ -25,4 +25,20 @@ const logTodos = () => {
   console.log(arrayOfTodos);
 };
 
-const populateTodos = () => {};
+const populateTodos = () => {
+  // get ol by ID
+  // loop thru arraysOfTodos
+    // create a list element 
+    // create text node make it = to the title of that obj
+    // append text node into list item
+    // append the list item into our ol
+
+    const ol = document.getElementById("todo-list");
+    for (let index = 0; index < arrayOfTodos.length; index++) {
+      const todo = arrayOfTodos[index];
+      const li = document.createElement("li");
+      const title = document.createTextNode(todo.title);
+      li.appendChild(title);
+      ol.appendChild(li);
+    }
+}
