@@ -23,7 +23,7 @@ button {
 }
 
 button:hover {
-  color:#00A0C6; 
+  color: yellow; 
   text-decoration:none; 
   cursor:pointer;  
 }
