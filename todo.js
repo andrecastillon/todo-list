@@ -28,17 +28,39 @@ const logTodos = () => {
 const populateTodos = () => {
   // get ol by ID
   // loop thru arraysOfTodos
-    // create a list element 
-    // create text node make it = to the title of that obj
-    // append text node into list item
-    // append the list item into our ol
+  // create a list element
+  // create text node make it = to the title of that obj
+  // append text node into list item
+  // append the list item into our ol
 
-    const ol = document.getElementById("todo-list");
-    for (let index = 0; index < arrayOfTodos.length; index++) {
-      const todo = arrayOfTodos[index];
-      const li = document.createElement("li");
-      const title = document.createTextNode(todo.title);
-      li.appendChild(title);
-      ol.appendChild(li);
+  const ol = document.getElementById("todo-list");
+  for (let index = 0; index < arrayOfTodos.length; index++) {
+    const todo = arrayOfTodos[index];
+    const li = document.createElement("li");
+    const title = document.createTextNode(todo.title);
+    li.appendChild(title);
+    ol.appendChild(li);
+  }
+};
+
+const filterTodosOldSchool = () => {
+  let filtered = [];
+  for (let index = 0; index < arrayOfTodos.length; index++) {
+    const todo = arrayOfTodos[index];
+    let userId = 2;
+    if (todo.userId === userId) {
+      filtered.push(todo);
     }
-}
+  }
+  console.log("filtered:", filtered);
+};
+const filterTodos = () => {
+  let filteredByUserId = arrayOfTodos.filter((todo) => {
+    let userId = 2;
+    // return todo
+    if (todo.userId === userId && todo.completed) {
+      return todo;
+    }
+  });
+  console.log("filteredByUserId:", filteredByUserId);
+};
