@@ -43,24 +43,74 @@ const populateTodos = () => {
   }
 };
 
-const filterTodosOldSchool = () => {
-  let filtered = [];
-  for (let index = 0; index < arrayOfTodos.length; index++) {
-    const todo = arrayOfTodos[index];
-    let userId = 2;
-    if (todo.userId === userId) {
-      filtered.push(todo);
-    }
-  }
-  console.log("filtered:", filtered);
-};
+// const filterTodosOldSchool = () => {
+//   let filtered = [];
+//   for (let index = 0; index < arrayOfTodos.length; index++) {
+//     const todo = arrayOfTodos[index];
+//     let userId = 2;
+//     if (todo.userId === userId) {
+//       filtered.push(todo);
+//     }
+//   }
+//   console.log("filtered:", filtered);
+// };
+// const filterTodos = () => {
+//   let filteredByUserId = arrayOfTodos.filter((todo) => {
+//     let userId = 2;
+//     // return todo
+//     if (todo.userId === userId && todo.completed) {
+//       return todo;
+//     }
+//   });
+//   console.log("filteredByUserId:", filteredByUserId);
+// };
+
+let filterStorage = []
+
 const filterTodos = () => {
-  let filteredByUserId = arrayOfTodos.filter((todo) => {
-    let userId = 2;
-    // return todo
-    if (todo.userId === userId && todo.completed) {
-      return todo;
-    }
-  });
-  console.log("filteredByUserId:", filteredByUserId);
+  reset();
+  const userNumber = document.getElementById("userNumber").value;
+  let filterArray = arrayOfTodos.filter(
+    (filteredTodo) => filteredTodo.userId == userNumber
+  );
+  const ol = document.getElementById("todo-list")
+  for (let index = 0; index < filterArray.length; index++) {
+    const element = filterArray[index];
+    const li = document.createElement("li");
+    const title = document.createTextNode(element.title);
+    li.appendChild(title);
+    ol.appendChild(li);
+    filterStorage.push(element)
+  }
 };
+
+const reset = () => {
+  const ol = document.getElementById("todo-list")
+  ol.innerHTML = ""
+}
+
+const Complete = () => {
+  reset();
+  const ol = document.getElementById("todo-list")
+  for (let index = 0; index < filterStorage.length; index++) { 
+    const element = filterStorage[index];
+    if (element.completed == true){
+      const li = document.createElement("li");
+      const title = document.createTextNode(element.title);
+      li.appendChild(title);
+     ol.appendChild(li);
+    }
+}}
+
+const Incomplete = () => {
+  reset();
+  const ol = document.getElementById("todo-list")
+  for (let index = 0; index < filterStorage.length; index++) { 
+    const element = filterStorage[index];
+    if (element.completed == false){
+      const li = document.createElement("li");
+      const title = document.createTextNode(element.title);
+      li.appendChild(title);
+     ol.appendChild(li);
+    }
+}}
